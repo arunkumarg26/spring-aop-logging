@@ -15,6 +15,8 @@
 	<description>AopExample for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<aspectj.rt.version>1.9.1</aspectj.rt.version>
+		<aspectj.weaver.version>1.9.1</aspectj.weaver.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,6 +37,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.rt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.weaver.version}</version>
 		</dependency>
 	</dependencies>
 

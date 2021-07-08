@@ -1,5 +1,6 @@
 package com.example.AopExample.controller;
 
+import com.example.AopExample.config.EntryExitLogging;
 import com.example.AopExample.entity.Users;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AopController {
 
     @GetMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
+    @EntryExitLogging(logParams = true, envProfiles = {"dev", "uat", "prod"})
     public Users sayHello(@RequestBody Users users){
         return users;
     }
