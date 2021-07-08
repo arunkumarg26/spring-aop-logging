@@ -61,6 +61,7 @@ public class AspectConfig {
 
         // executes upon method finishing
         long executionTime = System.currentTimeMillis() - start;
+        MDC.put("timeTaken", String.valueOf(executionTime));
         return output;
     }
 
@@ -103,10 +104,12 @@ public class AspectConfig {
         try{
             final HttpServletRequest servletRequest = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
             final Map<String, String> pathVariables = (Map<String, String>) servletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-
+            MDC.put("methodType", servletRequest.getMethod());
         } catch (NullPointerException | ClassCastException ignored) {
             // ignored, not all requests have path variables
         }
+
+        MDC.put("method", methodName);
     }
 
 

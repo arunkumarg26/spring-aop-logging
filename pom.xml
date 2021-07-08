@@ -17,6 +17,7 @@
 		<java.version>1.8</java.version>
 		<aspectj.rt.version>1.9.1</aspectj.rt.version>
 		<aspectj.weaver.version>1.9.1</aspectj.weaver.version>
+		<logstash.logback.encoder.version>5.1</logstash.logback.encoder.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -47,6 +48,11 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.weaver.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash.logback.encoder.version}</version>
 		</dependency>
 	</dependencies>
 

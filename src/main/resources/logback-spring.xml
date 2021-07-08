@@ -1,0 +1,38 @@
+<configuration>
+    <springProfile name="dev">
+        <!-- Timestamp used into the Log Stream Name -->
+        <timestamp key="byDay" datePattern="yyyyMMdd"/>
+        <property resource="application-dev.properties"/>
+        <property name="logDirectory" value="/var/log/${spring.application.name}"/>
+        <property name="archive" value="archive"/>
+
+        <!-- A console output -->
+        <appender name="json.stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <providers>
+                    <!-- provides the fields in the configured pattern -->
+                    <pattern>
+
+                        <pattern>
+                            {
+                            "methodType": "%mdc{methodType}",
+                            "parameter": "%mdc{parameter}",
+                            "serviceName":"AopExample",
+                            "traceId":"%mdc{x-trace-id}",
+                            "level": "%level",
+                            "message": "%message"
+                            }
+                        </pattern>
+
+                    </pattern>
+                </providers>
+            </encoder>
+        </appender>
+
+        <!-- Root with a threshold to INFO and above -->
+        <root level="INFO">
+            <!-- Append also to the (async) AwsLogsAppender -->
+            <appender-ref ref="json.stdout"/>
+        </root>
+    </springProfile>
+</configuration>
